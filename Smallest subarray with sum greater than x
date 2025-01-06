@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int smallestSubWithSum(int x, vector<int>& arr) {
+        // Your code goes here
+        int st=0;
+        int mnSize=INT_MAX;
+        int currSum=0;
+        for(int end=0;end<arr.size();end++)
+        {
+            currSum+=arr[end];
+            while(currSum>x)
+            {
+                mnSize=min(mnSize,(end-st+1));
+                currSum-=arr[st];
+                st++;
+            }
+        }
+        
+        if(mnSize==INT_MAX)
+        return 0;
+        else
+        return mnSize;
+    }
+};
