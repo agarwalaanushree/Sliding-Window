@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    vector<int> subarraySum(vector<int> &arr, int target) {
+        // code here
+        int st=0;
+        int currSum=0;
+        vector<int> vec;
+        for(int end=0;end<arr.size();end++)
+        {
+            currSum+=arr[end];
+            while(currSum>target)
+            {
+                currSum-=arr[st];
+                st++;
+            }
+            if(currSum==target)
+            {
+                vec.push_back(st+1);
+                vec.push_back(end+1);
+                return vec;
+            }
+        }
+        if(vec.size()==0)
+        return {-1};
+    }
+};
