@@ -1,3 +1,6 @@
+// Since negative as well as non-negative elements are present in the input, sliding window cannot be used
+
+
 class Solution {
   public:
     int lenOfLongestSubarr(vector<int>& arr, int k) {
