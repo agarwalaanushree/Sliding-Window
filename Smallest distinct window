@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    int findSubString(string& s) {
+        // Your code goes here
+        if(s.size()<=1)
+        return s.size();
+        
+        unordered_map<char,int> mp;
+        for(int i=0;i<s.size();i++){
+            mp[s[i]]++;
+        }
+        int dis_cnt=mp.size();
+        
+        int st=0;
+        int curr_cnt[256]={0};
+        int cnt=0;
+        int mn=INT_MAX;
+        for(int end=0;end<s.size();end++)
+        {
+            curr_cnt[s[end]]++;
+            
+            if(curr_cnt[s[end]]==1)
+            cnt++;
+            
+            if(cnt==dis_cnt){
+                while(curr_cnt[s[st]]>1)
+                {
+                    curr_cnt[s[st]]--;
+                    st++;
+                }
+                
+                int len=end-st+1;
+                mn=min(mn,len);
+            }
+        }
+        
+        return mn;
+        
+        
+    }
+};
